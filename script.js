@@ -30,11 +30,11 @@ const menuData = {
   ]
 };
 
-// 색상 배열 - 더 고급스러운 색상으로 변경
+// 색상 배열을 더 알록달록한 식욕 돋우는 색상으로 변경
 const colors = [
-  "#FF968A", "#FFBF9B", "#FFD8A9", "#E3F2C1", 
-  "#C6EBC5", "#A1C7E0", "#B5DEFF", "#CAB8FF", 
-  "#D8B4F8", "#FFC4C4", "#FEA1BF", "#FFC6AC"
+  "#FF5A5F", "#FFBD59", "#FFE66D", "#8FD14F", 
+  "#0ABF53", "#59D8E6", "#4B8AF9", "#A573E5",
+  "#E15FED", "#FF6B6B", "#FFA06B", "#F9DB6D"
 ];
 
 // 효과음 로드
@@ -295,19 +295,26 @@ function drawRoulette() {
   
   // 중앙 원 그리기
   ctx.beginPath();
-  ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
-  ctx.fillStyle = "#ffffff";
+  ctx.arc(centerX, centerY, 25, 0, Math.PI * 2); // 반지름 좀 더 크게
+  ctx.fillStyle = "#FF5A5F"; // 빨간색으로 변경 (식욕 증진)
   ctx.fill();
-  ctx.strokeStyle = "#333333";
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#ffffff";
+  ctx.lineWidth = 3;
   ctx.stroke();
   
   // 중앙에 텍스트 추가
-  ctx.font = "bold 16px 'Noto Sans KR'";
-  ctx.fillStyle = "#ff6b6b";
+  ctx.font = "bold 16px 'Jua'";
+  ctx.fillStyle = "#ffffff"; // 흰색 텍스트
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText("", centerX, centerY);
+  ctx.fillText("", centerX, centerY); // 텍스트 변경
+  
+  // 중앙 원 주변에 작은 원 추가 (음식 입자 느낌)
+  const dotCount = 8;
+  const dotRadius = 5;
+  const dotDistance = 35;
+  
+
 }
 
 // 색상 밝기 조절 함수
