@@ -1,52 +1,129 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 * {
-  font-family: Pretendard;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
 
 body {
-  background: #f7f8fc;
+  background: #f0f2f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.highlight {
+  color: #ff6b6b;
+}
+
+.roulette-container {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  margin: 1rem 0 2rem;
 }
 
 canvas {
+  border-radius: 50%;
   transition: 2s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 6px 10px rgba(0,0,0,0.05);
+  border: 8px solid white;
   pointer-events: none;
 }
 
-button {
-  background: #febf00;
-  margin-top: 1rem;
-  padding: .8rem 1.8rem;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: .2s;
-  cursor: pointer;
-}
-
-button:active {
-  background: #444;
-  color: #f9f9f9;
-}
- 
-div {
-  width: 380px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-}
-
-div::before {
-  content: "";
+.pointer {
   position: absolute;
-  width: 10px;
-  height: 50px;
-  border-radius: 5px;
-  background: #000;
-  top: -20px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 22;
+  width: 40px;
+  height: 40px;
+  background: #ff6b6b;
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%); /* 삼각형 상하반전 */
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 방향도 변경 */
+}
+
+.spin-button {
+  background: #ff6b6b;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spin-button:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.5);
+}
+
+.spin-button:active {
+  background: #e64545;
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+}
+
+.footer {
+  margin-top: 1.5rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* 기존 div::before 화살표 제거 (새로운 포인터로 대체) */
+div::before {
+  display: none;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 500px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .roulette-container {
+    width: 300px;
+    height: 300px;
+  }
+  
+  canvas {
+    width: 300px;
+    height: 300px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
 }
