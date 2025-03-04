@@ -1,6 +1,13 @@
 const $c = document.querySelector("canvas");
 const ctx = $c.getContext(`2d`);
 
+// 오디오 객체 생성
+const spinSound = new Audio('https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3');
+const endSound = new Audio('https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3');
+
+// 오디오 설정
+spinSound.loop = true; // 회전 중에는 소리가 계속 반복되도록 설정
+
 const product = [
   "떡볶이",
   "돈가스",
@@ -78,6 +85,10 @@ const rotate = () => {
   $c.style.transform = `initial`;
   $c.style.transition = `initial`;
 
+  // 회전 소리 재생 시작
+  spinSound.currentTime = 0;
+  spinSound.play();
+
   setTimeout(() => {
     const ran = Math.floor(Math.random() * product.length);
 
@@ -87,10 +98,17 @@ const rotate = () => {
     $c.style.transform = `rotate(${rotate}deg)`;
     $c.style.transition = `2s`;
 
-    setTimeout(
-      () => alert(`오늘의 야식은?! ${product[ran]} 어떠신가요?`),
-      2000
-    );
+    setTimeout(() => {
+      // 회전 소리 중지
+      spinSound.pause();
+      
+      // 결과 소리 재생
+      endSound.currentTime = 0;
+      endSound.play();
+      
+      // 결과 표시
+      alert(`오늘의 음식은?! ${product[ran]} 어떠신가요?`);
+    }, 2000);
   }, 1);
 };
 
